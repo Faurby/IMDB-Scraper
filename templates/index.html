@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Simple search engine</title>
+    <link rel="stylesheet" , href="{{ url_for('static', filename='css/forms.css') }}" , type="text/css" \>
+    <link rel="stylesheet" , href="{{ url_for('static', filename='css/style.css') }}" , type="text/css" \>
+</head>
+
+<body>
+    <form action="/" method="POST">
+        {{form.csrf_token}}
+        <fieldset>
+            {{form.seriesID.label}} {{form.seriesID}}
+        </fieldset>
+        <fieldset>
+
+            {{form.seasons.label}} {{form.seasons}}
+        </fieldset>
+        {{form.submit}}
+    </form>
+
+    {%if data != "" %}
+    <table>
+        {% for k, v in data.items() %}
+        <tr>
+            <th>Season: {{k}} </th>
+            <th>Avg. IMDB rating: {{v}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
